@@ -25,4 +25,33 @@ public static class InputHelper
 
         return array;
     }
+
+    public static List<List<string>> GetListMatrixInput()
+    {
+        var input = File.ReadAllLines(@"input.txt").ToList();
+        List<List<string>> matrices = [];
+        List<string> array = [];
+        var newArray = true;
+        foreach (var line in input)
+        {
+            if (newArray)
+            {
+                array = [];
+                newArray = false;
+            }
+
+            if (line == "")
+            {
+                matrices.Add(array);
+                newArray = true;
+            }
+            else
+            {
+                array.Add(line);
+            }
+        }
+
+        matrices.Add(array);
+        return matrices;
+    }
 }
